@@ -2,19 +2,43 @@ import react from 'react';
 
 import axios from 'axios';
 import { ReactComponent } from '*.svg';
+import { resolveWithPrefix } from 'jest-config/build/utils';
 
 class ClassForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cohort: props.cohort,
+      classes: props.cohort,
       NewCohort: {
-        name: '',
-        number: ''
+        classroom_name: '',
+        score: '',
+        highest_score: '',
       }
     }
   }
 
+
+  addClass = (event) => {
+    event.prevetntDefault();
+    axios
+      .post('https://noise-controller.herokuapp.com/api', {
+        classroom_name: '',
+        score: '',
+        highest_score: ''
+      })
+      .then(res => {
+        this.setState({
+          classes: resolveWithPrefix.data
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  inputHandler = event => {
+    this.setState({ [event.target.classroom_name]: event.target.value })
+  }
 
   changeHandler = event => {
     this.setState({
@@ -55,4 +79,4 @@ class ClassForm extends React.Component {
   }
 }
 
-export default form;
+export default ClassForm;
