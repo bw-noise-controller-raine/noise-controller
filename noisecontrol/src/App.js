@@ -7,8 +7,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      class: [],
-      classRoom: {
+      classes: [],
+      Class: {
         classroom_name: '',
         score: 0,
         highest_score: 0
@@ -27,7 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Route path='/' component={Header} />
+
         <Route path='/' />
 
       </div>

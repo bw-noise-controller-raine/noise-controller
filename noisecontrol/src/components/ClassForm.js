@@ -1,7 +1,7 @@
 import react from 'react';
 
 import axios from 'axios';
-import { ReactComponent } from '*.svg';
+
 import { resolveWithPrefix } from 'jest-config/build/utils';
 
 class ClassForm extends React.Component {
