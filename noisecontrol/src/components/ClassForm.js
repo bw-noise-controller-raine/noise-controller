@@ -64,6 +64,8 @@ class ClassForm extends React.Component {
             value={this.state.class.name}
           />
 
+          <input type='text' placeholder="whateveryou want" />
+
           <input
             onChange={this.changeHandler}
             type='text' id='number'
