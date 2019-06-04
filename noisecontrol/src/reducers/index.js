@@ -1,6 +1,6 @@
 import { LOGIN, SUCCESS, FAILURE, FETCHING_START, FETCHING_SUCCESS, FETCHING_FAILURE } from '../actions'
 
-const initialSate = {
+const initialState = {
   isLogging: false,
   classes: [],
   error: null,
@@ -33,3 +33,16 @@ export const groupReducer = (state = initialState, action) => {
     case FETCHING_SUCCESS:
       console.log(action.payload);
       return { ...state, fetchingClasses: false, classes: action.payload };
+
+    case FETCHING_FAILURE:
+      console.log(action.payload);
+      return {
+        ...state,
+        fetchingClasses: false,
+        error: true
+      }
+    default:
+      return state;
+
+  }
+}
