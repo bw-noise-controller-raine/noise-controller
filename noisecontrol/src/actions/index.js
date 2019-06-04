@@ -20,7 +20,7 @@ export const FETCHING_FAILURE = 'FETCHING_FAILURE';
 
 
 export const getlists = () => dispatch => {
-  dispatch({ type: FETCHING_CLASSES })
+  dispatch({ type: FETCHING_START })
   axios
     .get('https://noise-controller.herokuapp.com/api/auth')
     .then(res => {

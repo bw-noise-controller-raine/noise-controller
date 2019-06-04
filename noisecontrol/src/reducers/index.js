@@ -14,7 +14,7 @@ const initialState = {
   classesDeleted: false,
 };
 
-export const groupReducer = (state = initialState, action) => {
+const groupReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN:
       return {
@@ -46,3 +46,5 @@ export const groupReducer = (state = initialState, action) => {
 
   }
 }
+
+export default groupReducer

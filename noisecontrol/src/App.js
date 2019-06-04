@@ -28,7 +28,8 @@ class App extends React.Component {
     return (
       <div className="App">
 
-        <Route path='/' />
+        {/* <Route path='/' />
+        <Route path='/' /> */}
 
       </div>
     );
