@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { login } from '../actions';
 
-class login extends React.Component {
+class classLogin extends React.Component {
   state = {
     credentials: {
       username: '',
@@ -22,7 +22,7 @@ class login extends React.Component {
   login = event => {
     event.preventDefault();
     this.props.login(this.state.credentials).then(() => {
-      this.props.history.push('/protected');
+      this.props.history.push('/Aquarium');
     })
   };
 
@@ -49,7 +49,6 @@ class login extends React.Component {
               'Log In'
             )}
         </button>
-
       </form>
     )
   }
@@ -63,4 +62,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-)(Login)
+  { login }
+)(classLogin)
