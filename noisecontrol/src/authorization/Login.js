@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { login } from '../actions';
+import { Link } from 'react-router-dom';
 
 class classLogin extends React.Component {
   state = {
@@ -22,7 +23,7 @@ class classLogin extends React.Component {
   login = event => {
     event.preventDefault();
     this.props.login(this.state.credentials).then(() => {
-      this.props.history.push('/Aquarium');
+      this.props.history.push('/protected');
     })
   };
 
@@ -33,28 +34,34 @@ class classLogin extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.login}>
-        <input
-          type='text'
-          name='username'
-          value={this.state.credentials.username}
-          onChange={this.changeHandler}
-        />
+      <div>
+        <form onSubmit={this.login}>
+          <input
+            type='text'
+            name='username'
+            value={this.state.credentials.username}
+            onChange={this.changeHandler}
+          />
 
-        <input
-          type='password'
-          name='password'
-          value={this.state.credentials.password}
-          onChange={this.changeHandler}
-        />
-        <button>
-          {this.props.isLoggedIn ? (
-            <Loader type='ThreeDots' color='mediumpurple' height='10' width='20' />
-          ) : (
-              'Log In'
-            )}
-        </button>
-      </form>
+          <input
+            type='password'
+            name='password'
+            value={this.state.credentials.password}
+            onChange={this.changeHandler}
+          />
+          <Link to='/mainpage'>
+            <button>
+              {this.props.isLoggedIn ? (
+                <Loader type='ThreeDots' color='mediumpurple' height='10' width='20' />
+              ) : (
+                  'Log In'
+                )}
+            </button>
+          </Link>
+        </form>
+
+        <button onClick={this.registerHandler}>Register</button>
+      </div>
     )
   }
 

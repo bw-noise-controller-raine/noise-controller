@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Aquarium = () => {
+const mainpage = () => {
   return (
     <div>
       <h1>Hello</h1>
@@ -9,4 +9,4 @@ const Aquarium = () => {
 }
 
 
-export default Aquarium;
+export default mainpage;

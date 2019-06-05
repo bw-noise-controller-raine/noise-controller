@@ -36,7 +36,7 @@ export const ERROR = 'ERROR'
 export const LOADING = 'LOADING'
 
 
-export const register = () => dispatch => {
+export const register = newUser => dispatch => {
   dispatch({ type: LOADING });
   return axios
     .post('https://noise-controller.herokuapp.com/api/auth/register', newUser)

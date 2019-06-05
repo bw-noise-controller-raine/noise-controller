@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { register } from '../actions';
+import { Link } from 'react-router-dom'
 
 class Register extends Component {
   state = {
@@ -53,9 +54,25 @@ class Register extends Component {
             onChange={this.changeHandler}
             placeholder='Password'
           />
-          <button>Sign Up</button>
+          <input
+            type='text'
+            name='classname'
+            onChange={this.changeHandler}
+            placeholder='Class Name'
+          />
+
+          <Link to='/'>/<button>Sign Up</button></Link>
         </form>
       </div>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    error: state.error,
+    addingUser: state.addingUser
+  }
+}
+
+export default connect(mapStateToProps, { register: register })(Register)
