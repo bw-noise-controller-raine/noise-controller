@@ -43,42 +43,45 @@ class AddClass extends Component {
     return (
       <div className='addClass'>
         <h2>Add A Class</h2>
-        <form>
-          <input
-            type="text"
-            onChange={this.changeHandler}
-            placeholder='Name'
-            value={this.state.name}
-            name='name'
-          />
+        <div className='formContainer'>
+          <div className="classContainer">
 
-          <input
-            type="text"
-            onChange={this.changeHandler}
-            placeholder='ClassRoom Name'
-            value={this.state.classroomName}
-            name='classroomName'
-          />
+            <form>
+              <input
+                type="text"
+                onChange={this.changeHandler}
+                placeholder='Name'
+                value={this.state.name}
+                name='name'
+              />
 
-          <input
-            type='text'
-            onChange={this.changeHandler}
-            placeholder='Score'
-            value={this.state.score}
-            name='score'
-          />
+              <input
+                type="text"
+                onChange={this.changeHandler}
+                placeholder='ClassRoom Name'
+                value={this.state.classroomName}
+                name='classroomName'
+              />
 
-          <input
-            type="text"
-            onChange={this.changeHandler}
-            placeholder='Highest Score'
-            value={this.state.score}
-            name='highestScore'
-          />
-          <NavLink to='/classes'><button type='submit'>Add A Class</button></NavLink>
+              <input
+                type='text'
+                onChange={this.changeHandler}
+                placeholder='Score'
+                value={this.state.score}
+                name='score'
+              />
 
-        </form>
-
+              <input
+                type="text"
+                onChange={this.changeHandler}
+                placeholder='Highest Score'
+                value={this.state.score}
+                name='highestScore'
+              />
+              <NavLink to='/classes'><button type='submit'>Add A Class</button></NavLink>
+            </form>
+          </div>
+        </div>
       </div>
 
     )

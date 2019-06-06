@@ -31,7 +31,7 @@
   align-items: center;
   justify-content: center;
   color: rgb(17, 95, 240);
-  font-size: 2.6rem;
+  font-size: 2.7rem;
   letter-spacing: 5px;
   background-color: limegreen;
   font-family: 'Acme', sans-serif;
@@ -96,6 +96,7 @@
    border: 1px solid rgb(189, 60, 240);
    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
    font-family: 'Acme', sans-serif;
+   border-radius: 5px;
  }
 
  .logButton:hover {
@@ -109,9 +110,50 @@
   height: 100vh;
 
   position: relative;
-  background-image: url('https://i.pinimg.com/originals/96/84/60/96846039086cfaed7f1dd3f991459657.jpg');
+  background-image: url('https://s3.envato.com/files/234715712/Preview/10.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  
+}
+
+.links,button {
+  font-family: 'Acme', sans-serif;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  
+}
+
+.classButtons {
+  background-color: mediumpurple;
+  color: white;
+  padding: 3px 15px;
+  font-size: 12px;
+}
+
+.addClass {
+  height: 100vh;
+
+  position: relative;
+  background-image: url('https://cdn.wallpapersafari.com/5/10/aNnQJV.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.formContainer,input {
+    margin: auto;
+    width: 50%;
+    display: flex;
+    flex-direction: 'column';
+    align-items: center;
+
 }
 

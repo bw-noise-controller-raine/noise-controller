@@ -4,11 +4,9 @@ import axios from 'axios';
 
 
 class updateClass extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      classes: [],
-      activeClass: null
     }
   }
 
@@ -37,7 +35,7 @@ class updateClass extends React.Component {
             type="text"
             onChange={this.changeHandler}
             placeholder='Name'
-            value={this.state.name}
+            value={this.props.name}
             name='name'
           />
 
@@ -45,7 +43,7 @@ class updateClass extends React.Component {
             type="text"
             onChange={this.changeHandler}
             placeholder='ClassRoom Name'
-            value={this.state.classroomName}
+            value={this.props.classroomName}
             name='classroomName'
           />
 
@@ -53,7 +51,7 @@ class updateClass extends React.Component {
             type='text'
             onChange={this.changeHandler}
             placeholder='Score'
-            value={this.state.score}
+            value={this.props.score}
             name='score'
           />
 
@@ -61,10 +59,10 @@ class updateClass extends React.Component {
             type="text"
             onChange={this.changeHandler}
             placeHolder='Highest Score'
-            value={this.state.score}
+            value={this.props.score}
             name='highestScore'
           />
-          <button type='submit'>Add A Class</button>
+          <button type='submit'>Update A Class</button>
 
         </form>
 

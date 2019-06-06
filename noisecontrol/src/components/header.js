@@ -6,7 +6,7 @@ const Header = () => {
     <div>
       <div className='header' >
         {console.log(localStorage.getItem('token'))}
-        <h2>Noise Control</h2>
+        <h2 className="mainHeading">Noise Control</h2>
       </div>
 
     </div >
