@@ -12,6 +12,8 @@ const initialState = {
   classesUpdated: false,
   deletingClasses: false,
   classesDeleted: false,
+  registering: false,
+  credentials: []
 };
 
 const groupReducer = (state = initialState, action) => {
@@ -41,6 +43,27 @@ const groupReducer = (state = initialState, action) => {
         fetchingClasses: false,
         error: true
       }
+    case REGISTER_SUCCESS:
+      console.log(action.payload);
+      return {
+            ..console.sate,
+        registering: false,
+        credentials: [...state.credentials, action.payload]
+      }
+
+    case LOADING:
+      return {
+        ...state,
+        registering: true,
+      }
+
+    case ERROR:
+      return {
+        ...state,
+        error: action.payload
+      }
+
+
     default:
       return state;
 
