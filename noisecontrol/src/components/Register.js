@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { register } from '../actions';
-// import { Link } from 'react-router-dom'
+
 
 class Register extends Component {
   state = {
@@ -10,17 +10,18 @@ class Register extends Component {
       password: ''
     }
   }
-  changeHandler = event => {
+
+  changeHandler = e => {
     this.setState({
       credentials: {
         ...this.state.credentials,
-        [event.target.name]: event.target.value
+        [e.target.name]: e.target.value
       }
     })
   }
 
-  newregister = event => {
-    event.preventDefault();
+  newregister = e => {
+    e.preventDefault();
     if (!this.state.credentials.username || !this.state.credentials.password) {
       alert('Please Enter Correct UserName and Password')
       return null;
@@ -29,7 +30,7 @@ class Register extends Component {
         .then(() => this.props.history.push('/'))
       this.setState({
         username: '',
-        password: ''
+        password: '',
       })
     }
   }
@@ -60,7 +61,6 @@ class Register extends Component {
             onChange={this.changeHandler}
             placeholder='Class Name'
           />
-
           <button type='submit'>Sign Up</button>
         </form>
       </div>
@@ -74,5 +74,5 @@ const mapStateToProps = state => {
     addingUser: state.addingUser
   }
 }
-
-export default connect(mapStateToProps, { register })(Register)
+export default connect(mapStateToProps,
+  { register })(Register);
