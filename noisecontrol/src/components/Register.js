@@ -26,7 +26,7 @@ class Register extends Component {
       return null;
     } else {
       this.props.register(this.state.credentials)
-        .then(() => this.props.history.push('./login'))
+        .then(() => this.props.history.push('/'))
       this.setState({
         username: '',
         password: ''
@@ -61,7 +61,7 @@ class Register extends Component {
             placeholder='Class Name'
           />
 
-          <Link to='/'>/<button>Sign Up</button></Link>
+          <button type='submit'>Sign Up</button>
         </form>
       </div>
     )
