@@ -19,7 +19,7 @@ class Register extends Component {
     })
   }
 
-  register = event => {
+  newRegister = event => {
     event.preventDefault();
     if (!this.state.credentials.username || !this.state.credentials) {
       alert('Please Enter Correct UserName and Password')
@@ -39,7 +39,7 @@ class Register extends Component {
     return (
       <div>
         <h1>Register Here</h1>
-        <form onSubmit={this.register}>
+        <form onSubmit={this.newRegister}>
           <input
             type='text'
             name='username'
@@ -75,4 +75,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { register: register })(Register)
+export default connect(mapStateToProps, { register })(Register)

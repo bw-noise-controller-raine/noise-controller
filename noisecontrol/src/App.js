@@ -2,7 +2,7 @@ import React from 'react';
 import axios from "axios";
 import Login from './authorization/Login';
 import { Route } from 'react-router-dom';
-// import Register from './components/register'
+import Register from './components/register'
 import mainpage from './components/aquarium';
 import Header from './components/header';
 import UpdateClass from './components/updating';
@@ -56,7 +56,7 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <Route exact path='/' component={Login} />
-        {/* <Route path='/register' component={Register} /> */}
+        <Route path='/register' component={Register} />
         <Route path='/mainpage' component={mainpage} />
         <Route path='updating' render={props => (
           <UpdateClass{...props}
