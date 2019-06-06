@@ -1,4 +1,4 @@
-import { LOGIN, SUCCESS, FAILURE, FETCHING_START, FETCHING_SUCCESS, FETCHING_FAILURE } from '../actions'
+import { LOGIN, SUCCESS, FAILURE, FETCHING_START, FETCHING_SUCCESS, FETCHING_FAILURE, REGISTER_SUCCESS, LOADING, ERROR } from '../actions'
 
 const initialState = {
   isLoggingIn: false,
@@ -46,7 +46,7 @@ const groupReducer = (state = initialState, action) => {
     case REGISTER_SUCCESS:
       console.log(action.payload);
       return {
-            ..console.sate,
+        ...state,
         registering: false,
         credentials: [...state.credentials, action.payload]
       }
