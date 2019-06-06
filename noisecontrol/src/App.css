@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -18,16 +18,61 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+ */
 
-.App-link {
-  color: #61dafb;
+body {
+  height: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: limegreen;
+  font-size: 2.5rem;
+  letter-spacing: 5px;
 }
+
+/* .main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #bb1333;
+  height: 100%;
+} */
+
+.container {
+  display: flex;
+  justify-content: center;
+  background: limegreen;
+  width: 100%;
+  margin: 0 auto;
+}
+
+ .Form{
+  border: 1px solid red;
+  display:flex;
+  flex-direction: 'column';
+  height: 200px;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+  background-color: mediumpurple;
+
+}
+
+ .formInput {
+   display: flex;
+   flex-direction: 'column';
+   border-radius: 5px;
+   padding: 5px;
+ }
+
+ .logButton {
+   display: flex;
+   flex-direction: row;
+   margin: 0 auto;
+ }
+

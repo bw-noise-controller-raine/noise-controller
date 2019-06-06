@@ -34,33 +34,39 @@ class classLogin extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.login}>
-          <input
-            type='text'
-            name='username'
-            value={this.state.credentials.username}
-            onChange={this.changeHandler}
-          />
+      <div className="container">
+        <div className='Form'>
+          <form onSubmit={this.login}>
+            <input className='formInput'
+              type='text'
+              name='username'
+              placeholder="Name"
+              value={this.state.credentials.username}
+              onChange={this.changeHandler}
+            />
+            <br />
+            <input className='formInput'
+              type='password'
+              name='password'
+              placeholder="Password"
+              value={this.state.credentials.password}
+              onChange={this.changeHandler}
+            />
 
-          <input
-            type='password'
-            name='password'
-            value={this.state.credentials.password}
-            onChange={this.changeHandler}
-          />
+            <br />
 
-          <button type='submit'>
-            {this.props.isLoggedIn ? (
-              <Loader type='ThreeDots' color='mediumpurple' height='10' width='20' />
-            ) : (
-                'Log In'
-              )}
-          </button>
+            <button className='logButton' type='submit'>
+              {this.props.isLoggedIn ? (
+                <Loader type='ThreeDots' color='mediumpurple' height='10' width='20' />
+              ) : (
+                  'Log In'
+                )}
+            </button >
+            <button className='logButton' onClick={this.registerHandler}>Register</button>
 
-        </form>
+          </form>
 
-        <button onClick={this.registerHandler}>Register</button>
+        </div>
       </div>
     )
   }
