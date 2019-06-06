@@ -1,0 +1,9 @@
+[build]
+base = "noise-controller/"
+publish = "noise-controller/build/"
+command = "yarn build"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
