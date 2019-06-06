@@ -30,9 +30,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: limegreen;
-  font-size: 2.5rem;
+  color: rgb(17, 95, 240);
+  font-size: 2.6rem;
   letter-spacing: 5px;
+  background-color: limegreen;
+  font-family: 'Acme', sans-serif;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.header:hover {
+  background-color: #f7a8b7;
+  opacity: 50%;
+  color: white;
 }
 
 /* .main {
@@ -53,14 +62,19 @@
 }
 
  .Form{
-  border: 1px solid red;
+  border: 1px solid rgb(7, 7, 117 );
   display:flex;
   flex-direction: 'column';
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
   justify-content: center;
   align-items: center;
   background-color: mediumpurple;
+ position: relative;
+ background-image: url('https://www.wickedwalls.com.au/uploads/2/2/7/6/2276646/s351108049999434943_p1228_i1_w640.jpeg');
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
 
 }
 
@@ -68,12 +82,36 @@
    display: flex;
    flex-direction: 'column';
    border-radius: 5px;
-   padding: 5px;
+   padding: 10px;
+   width: 200px;
+   font-size: 15px;
  }
 
  .logButton {
-   display: flex;
+   /* display: flex; */
    flex-direction: row;
-   margin: 0 auto;
+   margin: 0 29px;
+   background-color: rgb(13, 238, 163);
+   color: rgb(7, 7, 117 );
+   border: 1px solid rgb(189, 60, 240);
+   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+   font-family: 'Acme', sans-serif;
  }
+
+ .logButton:hover {
+  background-color: #f7a8b7;
+  opacity: 50%;
+  color: white;
+  cursor: pointer;
+}
+
+.mainPage {
+  height: 100vh;
+
+  position: relative;
+  background-image: url('https://i.pinimg.com/originals/96/84/60/96846039086cfaed7f1dd3f991459657.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 

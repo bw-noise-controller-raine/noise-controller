@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 class AddClass extends Component {
   constructor(props) {
@@ -74,7 +75,7 @@ class AddClass extends Component {
             value={this.state.score}
             name='highestScore'
           />
-          <button type='submit'>Add A Class</button>
+          <NavLink to='/classes'><button type='submit'>Add A Class</button></NavLink>
 
         </form>
 

@@ -4,12 +4,12 @@ import { NavLink } from 'react-router-dom';
 const Header = () => {
   return (
     <div>
-      <div className='header'>
+      <div className='header' >
         {console.log(localStorage.getItem('token'))}
         <h2>Noise Control</h2>
       </div>
 
-    </div>
+    </div >
   )
 }
 

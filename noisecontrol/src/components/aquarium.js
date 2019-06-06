@@ -1,12 +1,12 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const mainpage = () => {
   return (
     <div>
 
-      <div className='links'>
-        
+      <div className='links mainPage'>
+
         <NavLink to='classes'><button>My Classes</button></NavLink>
         <NavLink to='addClass'><button>Add A Class</button></NavLink>
       </div>
