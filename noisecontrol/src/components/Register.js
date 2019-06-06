@@ -21,7 +21,7 @@ class Register extends Component {
 
   newRegister = event => {
     event.preventDefault();
-    if (!this.state.credentials.username || !this.state.credentials) {
+    if (!this.state.credentials.username || !this.state.credentials.password) {
       alert('Please Enter Correct UserName and Password')
       return null;
     } else {
