@@ -1,47 +1,37 @@
+import React from 'react';
 import axios from 'axios';
-import React, { Component } from 'react';
 
-class AddClass extends Component {
-  constructor(props) {
-    super(props);
+
+
+class updateClass extends React.Component {
+  constructor() {
+    super();
     this.state = {
-      classes: props.classes,
-      addClass: {
-        name: '',
-        classroomName: '',
-        score: 0,
-        highestScore: 0
-      }
+      classes: [],
+      activeClass: null
     }
   }
 
-  addClass = (event, Class) => {
-    event.prevetDefault();
+  updateClass = updatedClass => {
     axios
-      .post('https://noise-controller.herokuapp.com/api/classrooms'), {
-        name: this.state.name,
-        classroomName: this.state.classroomName,
-        score: this.state.score,
-        highestScore: this.state.highestScore
-      }
-        .then(res => {
-          this.ListeningStateChangedEvent({
-            classes: res.data
-          })
-        })
-        .catch(error => {
-          console.log(error)
-        })
-  }
+      .put(`https://noise-controller.herokuapp.com/api/classrooms/${updatedClass.id}`, updatedClass)
+      .then(res => {
+        this.render.setState({ classes: res.data });
+        this.props.history.push('/classes');
+      })
+      .catch(error => console.log(error))
+  };
 
-  changeHandler = event => {
-    this.setState({ [event.target.name]: event.target.value })
+  setUpdateForm = Class => {
+    this.setState({ activeClass: Class });
+    this.props.history.push('/updating')
   };
 
   render() {
     return (
-      <div className='addClass'>
-        <h2>Add A Class</h2>
+
+      <div className='udpate'>
+        <h2>Update A Class</h2>
         <form>
           <input
             type="text"
@@ -80,9 +70,10 @@ class AddClass extends Component {
 
       </div>
 
-    )
 
+    )
   }
 }
 
-export default AddClass;
+
+export default updateClass;
