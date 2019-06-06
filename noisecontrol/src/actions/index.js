@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { axiosAutho } from '../axiosAutho';
 
 export const LOGIN = 'LOGIN'
 export const SUCCESS = 'SUCCESS'
@@ -6,11 +7,11 @@ export const FAILURE = 'FAILURE'
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN });
-  return axios
+  return axiosAutho()
     .post('https://noise-controller.herokuapp.com/api/auth/login', creds)
     .then(res => {
-      localStorage.setItem('token', res.data.payload);
-      dispatch({ type: SUCCESS, payload: res.data.payload })
+      localStorage.setItem('token', res.data.token);
+      dispatch({ type: SUCCESS, payload: res.data })
     })
 }
 
@@ -38,14 +39,14 @@ export const LOADING = 'LOADING'
 
 export const register = newUser => dispatch => {
   dispatch({ type: LOADING });
-  return axios
+  return axiosAutho()
     .post('https://noise-controller.herokuapp.com/api/auth/register', newUser)
     .then(res => dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data
     }))
     .catch(error => dispatch({
-      type: Error,
+      type: ERROR,
       payload: error
     }))
 }

@@ -1,13 +1,16 @@
+
+
 import axios from 'axios'
 
 
 
 export const axiosAutho = () => {
-  const token = localstorage.getItem('token');
+  const token = localStorage.getItem('token');
   return axios
     .create({
       headers: {
-        Authorization: token
+        authorization: `${token}`,
+        'Content-Type': 'application/json',
       },
       baseURL: 'https://noise-controller.herokuapp.com/api'
     })

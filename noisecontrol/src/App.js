@@ -1,12 +1,15 @@
 import React from 'react';
 import axios from "axios";
-import Login from './authorization/Login'
+import Login from './authorization/Login';
 import { Route } from 'react-router-dom';
-import Register from './components/register'
-import mainpage from './components/aquarium'
-// import Header from './components/header'
-import UpdateClass from './components/updating'
-import AddClass from './components/addclass'
+import Register from './components/register';
+import mainpage from './components/aquarium';
+import Header from './components/header';
+import UpdateClass from './components/updating';
+import AddClass from './components/addclass';
+import Classes from './components/Classes';
+import { NavLink } from 'react-router-dom';
+import PrivateRoute from './authorization/PrivateRoute';
 
 import './App.css';
 
@@ -51,7 +54,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        {/* <Header /> */}
+        <Header />
         <Route exact path='/' component={Login} />
         <Route path='/register' component={Register} />
         <Route path='/mainpage' component={mainpage} />
@@ -62,7 +65,9 @@ class App extends React.Component {
           />
         )}
         />
-        <Route path='/addClass' component={AddClass} />
+        <PrivateRoute path='/addClass' component={AddClass} />
+
+        <PrivateRoute path='/classes' component={Classes} />
       </div>
     );
   }

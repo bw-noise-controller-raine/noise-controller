@@ -1,7 +1,7 @@
 import { LOGIN, SUCCESS, FAILURE, FETCHING_START, FETCHING_SUCCESS, FETCHING_FAILURE } from '../actions'
 
 const initialState = {
-  isLogging: false,
+  isLoggingIn: false,
   classes: [],
   error: null,
   fetchingData: false,
@@ -25,7 +25,7 @@ const groupReducer = (state = initialState, action) => {
     case SUCCESS:
       return {
         ...state,
-        isLoggedIn: true
+        isLoggingIn: false
       }
     case FETCHING_START:
       return { ...state, fetchingStart: true, classes: action.payload };

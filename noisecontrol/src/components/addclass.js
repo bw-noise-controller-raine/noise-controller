@@ -15,23 +15,23 @@ class AddClass extends Component {
     }
   }
 
-  addClass = (event, Class) => {
+  addClass = (event) => {
     event.prevetDefault();
     axios
-      .post('https://noise-controller.herokuapp.com/api/classrooms'), {
+      .post('https://noise-controller.herokuapp.com/api/classrooms', {
         name: this.state.name,
         classroomName: this.state.classroomName,
         score: this.state.score,
         highestScore: this.state.highestScore
-      }
-        .then(res => {
-          this.ListeningStateChangedEvent({
-            classes: res.data
-          })
+      })
+      .then(res => {
+        this.ListeningStateChangedEvent({
+          classes: res.data
         })
-        .catch(error => {
-          console.log(error)
-        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   changeHandler = event => {
@@ -70,7 +70,7 @@ class AddClass extends Component {
           <input
             type="text"
             onChange={this.changeHandler}
-            placeHolder='Highest Score'
+            placeholder='Highest Score'
             value={this.state.score}
             name='highestScore'
           />
