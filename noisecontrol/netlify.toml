@@ -1,6 +1,6 @@
 [build]
-base = "noise-controller/"
-publish = "noise-controller/build/"
+base = "noisecontrol/"
+publish = "noisecontrol/build/"
 command = "yarn build"
 
 [[redirects]]
