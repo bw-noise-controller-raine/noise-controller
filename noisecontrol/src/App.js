@@ -8,7 +8,7 @@ import Header from './components/header';
 import UpdateClass from './components/updating';
 import AddClass from './components/addclass';
 import Classes from './components/Classes';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import PrivateRoute from './authorization/PrivateRoute';
 
 import './App.css';

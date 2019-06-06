@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { login } from '../actions';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class classLogin extends React.Component {
   state = {
