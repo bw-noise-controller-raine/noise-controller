@@ -19,7 +19,7 @@ class Register extends Component {
     })
   }
 
-  newRegister = event => {
+  newregister = event => {
     event.preventDefault();
     if (!this.state.credentials.username || !this.state.credentials.password) {
       alert('Please Enter Correct UserName and Password')
@@ -39,7 +39,7 @@ class Register extends Component {
     return (
       <div>
         <h1>Register Here</h1>
-        <form onSubmit={this.newRegister}>
+        <form onSubmit={this.newregister}>
           <input
             type='text'
             name='username'
