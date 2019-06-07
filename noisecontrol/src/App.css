@@ -148,12 +148,82 @@
   background-size: cover;
 }
 
-.formContainer,input {
-    margin: auto;
-    width: 50%;
-    display: flex;
-    flex-direction: 'column';
-    align-items: center;
-
+.addClassText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgb(238, 13, 118);
+  font-family: 'Acme', sans-serif;
+  letter-spacing: 2px;
+  margin: 0;
+  font-size: 35px;
+  padding-top: 15px;
 }
 
+.formContainer,input {
+    margin: auto;
+    width: 300px;
+    display: flex;
+    flex-direction: 'column';
+    justify-content: center;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Acme', sans-serif;
+    height: 1rem;
+    
+    
+}
+
+.addclassbutton {
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+ background-color: mediumpurple; 
+ color: white;
+ margin-left: 6rem;
+ padding: 5px 25px;
+ text-decoration: none;
+ font-family: 'Acme', sans-serif;
+ font-size: 15px;
+  /* background-color: dodgerblue; */
+}
+
+.addclassbutton:hover {
+  background-color: #f7a8b7;
+  opacity: 50%;
+  color: dodgerblue;
+  cursor: pointer;
+}
+
+
+
+
+.update{
+  height: 100vh;
+  position: relative;
+  background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ac29f9ec-86fb-41c5-8021-4560d3616b68/d2h5hnp-2a1fd2a0-eeff-4125-8d0f-a81c5c4eab9a.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2FjMjlmOWVjLTg2ZmItNDFjNS04MDIxLTQ1NjBkMzYxNmI2OFwvZDJoNWhucC0yYTFmZDJhMC1lZWZmLTQxMjUtOGQwZi1hODFjNWM0ZWFiOWEuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.hAXQwR0J2Aezz5aAMekHBrmwroaBon13lzfSM3lZ-_4');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+ }
+
+
+ .classesContainer{
+  height: 100vh;
+  position: relative;
+  background-image: url('https://dumielauxepices.net/sites/default/files/blue-water-clipart-ppt-background-863034-7683893.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+ }
+ 
+ .classlist{
+   color:limegreen;
+   font-size: 35px;
+   font-family: 'Acme', sans-serif;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ 
+ }

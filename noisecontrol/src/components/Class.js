@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Class = props => {
+const Classroom = props => {
   return (
     <div>
-      <li>{props.Class.name}</li>
+      <ul>
+        <li>{props.Classroom.classroom_name}</li>
+      </ul>
       <Link to='updating'><button>Update</button></Link>
     </div>
   )
 }
 
-export default Class;
+export default Classroom;

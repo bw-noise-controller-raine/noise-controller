@@ -1,242 +1,94 @@
-var DecibelMeter = (function (window, navigator, document, undefined) {
+import React from 'react'
 
+class Audio extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            audioData: new Uint8Array(0),
+            threshDescription: 'dont make a sound',
+            violations: 0,
+            maxVol: 150
+        };
 
-  if (!navigator.getUserMedia)
-    navigator.getUserMedia = navigator.webkitGetUserMedia
-      || navigator.mozGetUserMedia
-      || navigator.msGetUserMedia;
-  if (!navigator.getUserMedia) {
-    throw new Error('DecibelMeter: getUserMedia not supported');
-    return undefined;
-  }
-
-  window.AudioContex = window.AudioContext || window.webkitAudioContext;
-
-  if (!window.AudioContext) {
-    throw new Error('DecibelMeter: MediaStreamTrack not supported');
-    return undefined;
-  }
-
-  if (!navigator.mediaDevices) {
-    throw new Error('DecibelMeter: MediaStreamTrack not supported');
-    return undefined;
-  }
-
-  if (!navigator.mediaDevices.enumerateDevices) {
-    throw new Error('DecibelMeter: mediaDevices.enumerateDevices() not supported');
-    return undefined;
-  }
-
-  var sources = [],
-    sourcesIndex = {},
-    sourcesReady = false;
-
-  navigator.mediaDevices.enumerateDevices().then(function (srcs) {
-    srcs.forEach(function (source) {
-      if (source.kind === 'audiooutput') {
-        sources.push(source);
-        sourcesIndex[source.id] = source;
-      }
-    });
-    sourcesReady = true;
-
-    meters.forEach(function (meter) {
-      dispatch(meter, 'ready', [meter, sources]);
-    });
-  });
-
-  function connectTo(source, meter, callback) {
-    var oldSource = meter.source,
-      changing = oldSource !== null,
-      constraints = { audio: { optional: [{ sourceId: source.id }] } };
-
-    meter.source = source;
-
-    function success(stream) {
-      varconnection = {};
-
-      connectiong.stream = stream;
-      connection.context = newAudioContext();
-      connection.source = connection.context.createMediaStreamSource(stream);
-      connection.analyser = connection.context.createAnalyser();
-      connection.analyser.smoothingTimeConstant = .5;
-      connection.analyser, frequencyBinCount = 16;
-      connection.lastSample = new Uint8Array(1);
-
-      meter.connection = connection;
-      meter.connected = true;
-
-      if (callback)
-        callback.call(meter, meter, source);
-
-      if (changing && meter.handle.sourceChange)
-        dispatch(meter, 'source-change', [source, oldSource, meter]);
+        this.tick = this.tick.bind(this);
     }
 
-    function error() {
-      alert('Error connecting to source');
+    componentDidMount() {
+        this.audioContext = new (window.AudioContext ||
+            window.webkitAudioContext)();
+        this.analyser = this.audioContext.createAnalyser();
+        this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+        this.source.connect(this.analyser);
+        this.time = setInterval(this.tick, 1000);
+        clearInterval(this.timer);
+        this.rafId = requestAnimationFrame(this.tick)
     }
 
-    navigator.getUserMedia(constraints, success, error);
-  }
+    componentWillUnmount() {
+        cancelAnimationFrame(this.rafId);
+        this.analyser.disconnect();
+        this.source.discounnect();
+        clearInterval(this.timer);
+    }
+    tick = () => {
+        this.analyser; yser.getByteTimeDomainData(this.dataArray);
+        this.rafId = requestAnimationFrame(this.tick);
 
-  function dispatch(meter, eventName, params) {
-    var h = meter.handle[eventName],
-      n = h.length;
+        this.setState({
+            audioData: this.dataArray
+        })
 
-    if (n === 0) return;
+        timerChanges = e => {
+            this.setState({
+                [e.target.name]: e.target.value
+            })
+        }
 
-    var i = 0;
-
-    for (; i < n; i++)
-      if (true === h[i].apply(meter, params))
-        break;
-  }
-
-
-
-  function DecibelMeter(id, opts) {
-    this.id = id;
-    this.opts = opts;
-    this.source = null;
-    this.listening = false;
-    this.connection = null;
-    this.connected = false;
-    this.handle = {
-      ready: opts.ready ? [opts.ready] : [],
-      sample: opts.sample ? [opts.sample] : [],
-      connect: opts.connect ? [opts.connect] : [],
-      disconnect: opts.disconnect ? [opts.disconnect] : [],
-      "source-change": opts.sourceChange ? [opts.sourceChange] : [],
-      listen: opts.listen ? [opts.listen] : [],
-      "stop-listening": opts.stopListeing ? [opts.stopListening] : []
-    };
-
-    this.startLoop();
-  }
-
-  DecibelMeter.prototype.getSources = function () {
-    return sources;
-  };
-
-  DecibelMeter.prototype.connect = function (source, callback) {
-
-    if (!sourcesReady)
-      throw new Error('DecibelMeter: Audio sources not ready');
-
-    if (!source)
-      throw new Error('DecibelMeter: No audio source specified');
-
-    if (typeof source === 'string' || typeof source === 'number') {
-
-      source = sourcesIndex[source];
-
-      if (!source)
-        throw new Error('DecibelMeter: Attempted to select invalid audio source');
+        if (Math.max.apply(Math, this.state.audioData) > this.state.maxVol) {
+            this.setState({
+                violations: this.state.violations + 3,
+                counter: 0
+            })
+            this.props.resetFish();
+        }
     }
 
-    if (this.source === source) return; // already connected to this source
+    handleChange = (e, value) => {
+        this.setState(
+            {
+                maxVol: value
 
-    connectTo(source, this, callback);
-    return this;
-  };
-
-  DecibelMeter.prototype.disconnect = function () {
-    if (this.connection === null) return this;
-
-    this.stopListening();
-    this.connection.stream.stop();
-    this.connection.stream = null;
-    this.connection = null;
-    this.source = null;
-    this.connected = false;
-
-    dispatch(this, 'disconnect', [this]);
-
-    return this;
-  };
-
-  DecibelMeter.prototype.listen = function () {
-    if (this.listening) return;
-
-    if (this.source === null)
-      throw new Error('DecibelMeter: No source selected');
-
-    if (this.connection === null)
-      throw new Error('DecibelMeter: Not connected to source');
-
-    this.connection.source.connect(this.connection.analyser);
-    this.listening = true;
-
-    dispatch(this, 'listen', [this]);
-  };
-
-  DecibelMeter.prototype.stopListening = function () {
-    if (!this.listening) return;
-
-    if (this.source === null)
-      throw new Error('DecibelMeter: No source selected');
-
-    if (this.connection === null)
-      throw new Error('DecibelMeter: Not connected to source');
-
-    this.connection.source.disconnect(this.connection.analyser);
-    this.listening = false;
-
-    dispatch(this, 'stop-listening', [this]);
-  };
-
-  DecibelMeter.prototype.startLoop = function () {
-
-    var meter = this;
-
-    function update() {
-
-      if (meter.listening && meter.handle.sample) {
-
-        meter.connection.analyser.getByteFrequencyData(meter.connection.lastSample);
-
-        var value = meter.connection.lastSample[0],
-          percent = value / 255,
-          dB = meter.connection.analyser.minDecibels + ((meter.connection.analyser.maxDecibels - meter.connection.analyser.minDecibels) * percent);
-
-        dispatch(meter, 'sample', [dB, percent, value]);
-      }
-
-      requestAnimationFrame(update);
+            },
+            () => {
+                if (this.state.maxVol < 120) {
+                    this.setState({ threshDescription: 'Dont Make A Sound' })
+                } else if (this.state.maxVol > 135 && this.state.maxVol < 150) {
+                    this.setState({ threshDescription: 'Little Whispers' })
+                } else if (this.state.maxVol > 150 && this.state.maxVol < 200) {
+                    this.setState({ threshDescription: 'Light Talking' })
+                } else if (this.state.maxVol > 200 && this.state.maxVol < 250) {
+                    this.setState({ threshDescription: 'Getting Loud' })
+                } else if (this.state.maxVol > 250 && this.state.maxVol < 299) {
+                    this.setState({ threshDescription: 'Making To Much Noise' })
+                } else if (this.state.maxVol > 299) {
+                    this.setState({ threshDescription: 'Way To Much Noise' })
+                }
+            }
+        )
     }
 
-    update();
-  };
 
-  DecibelMeter.prototype.on = function (eventName, handler) {
-    if (this.handle[eventName] === undefined) return this;
-    this.handle[eventName].push(handler);
-    return this;
-  };
-
+    render() {
+        
+        return(
+            <div>
+                <h2>Noise</h2>
+                <h3 className='sound'>{this.state.threshDescription}</h3>
 
 
-
-  var meters = [],
-    metersIndex = {};
-
-  return {
-    create: function (id, opts) {
-      id = id || ['db', new Date().getTime(), Math.random()].join('-');
-      var meter = new DecibelMeter(id, opts || {});
-      metersIndex[id] = meter;
-      meters.push(meter);
-      return meter;
-    },
-
-    getMeterById: function (id) {
-      return metersIndex[id] || null;
-    },
-
-    getMeters: function () {
-      return meters;
+            </div>
+        )
     }
-  };
+}
 
-})(window, navigator, document);
+export default Audio;

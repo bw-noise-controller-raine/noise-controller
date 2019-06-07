@@ -11,7 +11,7 @@ import logger from 'redux-logger';
 import './index.css';
 
 const store = createStore(groupReducer, applyMiddleware(thunk, logger))
-
+console.log('hello', store.getState())
 ReactDOM.render(
   <Provider store={store}>
     <Router>

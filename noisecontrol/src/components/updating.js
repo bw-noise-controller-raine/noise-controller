@@ -1,52 +1,36 @@
 import React from 'react';
-import axios from 'axios';
 
-
-
-class updateClass extends React.Component {
+class UpdateClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
     }
   }
 
-  updateClass = updatedClass => {
-    axios
-      .put(`https://noise-controller.herokuapp.com/api/classrooms/${updatedClass.id}`, updatedClass)
-      .then(res => {
-        this.render.setState({ classes: res.data });
-        this.props.history.push('/classes');
-      })
-      .catch(error => console.log(error))
-  };
 
-  setUpdateForm = Class => {
-    this.setState({ activeClass: Class });
-    this.props.history.push('/updating')
-  };
 
   render() {
     return (
+      <div className='update'>
 
-      <div className='udpate'>
         <h2>Update A Class</h2>
-        <form>
+        <form onSubmit={this.props.updateClass}>
           <input
-            type="text"
+            type='text'
             onChange={this.changeHandler}
             placeholder='Name'
-            value={this.props.name}
             name='name'
+            value={this.props.name}
           />
-
+          <br />
           <input
-            type="text"
+            type='text'
             onChange={this.changeHandler}
             placeholder='ClassRoom Name'
             value={this.props.classroomName}
             name='classroomName'
           />
-
+          <br />
           <input
             type='text'
             onChange={this.changeHandler}
@@ -54,24 +38,23 @@ class updateClass extends React.Component {
             value={this.props.score}
             name='score'
           />
-
+          <br />
           <input
-            type="text"
+            type='text'
             onChange={this.changeHandler}
-            placeHolder='Highest Score'
+            placeholder='Highest Score'
             value={this.props.score}
             name='highestScore'
           />
-          <button type='submit'>Update A Class</button>
+          <br />
+
 
         </form>
-
+        <button className='updateButton' type='submit'> Update A Class</button>
       </div>
-
 
     )
   }
 }
 
-
-export default updateClass;
+export default UpdateClass;
