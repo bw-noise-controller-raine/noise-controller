@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { register } from '../actions';
+import { withRouter } from "react-router";
 
 
 class Register extends Component {
@@ -38,10 +39,12 @@ class Register extends Component {
 
   render() {
     return (
-      <div>
+      <div className='registerContent'>
+        <div className='registerContainer'>
         <h1>Register Here</h1>
         <form onSubmit={this.newregister}>
           <input
+            className='registerInput'
             type='text'
             name='username'
             value={this.state.credentials.username}
@@ -49,6 +52,7 @@ class Register extends Component {
             placeholder='UserName'
           />
           <input
+            className='registerInput'
             type='password'
             name='password'
             value={this.state.credentials.password}
@@ -56,6 +60,7 @@ class Register extends Component {
             placeholder='Password'
           />
           <input
+            className='registerInput'
             type='text'
             name='classname'
             onChange={this.changeHandler}
@@ -63,6 +68,7 @@ class Register extends Component {
           />
           <button type='submit'>Sign Up</button>
         </form>
+      </div>
       </div>
     )
   }
@@ -74,5 +80,5 @@ const mapStateToProps = state => {
     addingUser: state.addingUser
   }
 }
-export default connect(mapStateToProps,
-  { register })(Register);
+export default withRouter(connect(mapStateToProps,
+  { register })(Register));

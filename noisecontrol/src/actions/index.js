@@ -9,7 +9,7 @@ export const login = creds => dispatch => {
   dispatch({ type: LOGIN });
   return axiosAutho()
     .post('https://noise-controller.herokuapp.com/api/auth/login', creds)
-    .then(res => {
+    .then(res => {localStorage.setItem('id', res.data.id)
       localStorage.setItem('token', res.data.token);
       dispatch({ type: SUCCESS, payload: res.data })
     })
@@ -41,14 +41,16 @@ export const register = newUser => dispatch => {
   dispatch({ type: LOADING });
   return axiosAutho()
     .post('https://noise-controller.herokuapp.com/api/auth/register', newUser)
-    .then(res => dispatch({
+    .then(res => {console.log(res.data)
+      dispatch({
       type: REGISTER_SUCCESS,
-      payload: res.data
-    }))
-    .catch(error => dispatch({
+      payload: res.data,  
+    })
+  })
+    .catch(error => { dispatch({
       type: ERROR,
-      payload: error
-    }))
+      payload: error})
+    })
 }
 
 export const ADDING_START = 'ADD_START'; 
@@ -60,7 +62,7 @@ export const addclass = newClassRoom => dispatch => {
   return axiosAutho()
   .post('https://noise-controller.herokuapp.com/api/auth/classrooms', newClassRoom)
   .then(res => {
-    localStorage.setItem("class", res.data.id);
+    localStorage.setItem("teacher", res.data.id);
     dispatch({
     
     type: ADDING_SUCCESS,
@@ -68,6 +70,6 @@ export const addclass = newClassRoom => dispatch => {
   })})
   .catch(error => dispatch({
     type: ADDING_FAILURE,
-    payload: error
+    payload: error.res
   })) 
 }

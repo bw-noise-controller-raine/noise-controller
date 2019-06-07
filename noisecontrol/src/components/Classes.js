@@ -4,7 +4,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { getlists } from '../actions';
 import { connect } from 'react-redux';
-
+import { withRouter } from "react-router";
 
 
 class Classes extends React.Component {
@@ -12,6 +12,7 @@ class Classes extends React.Component {
 
   componentDidMount() {
     this.props.getlists()
+    console.log(this.props.classes)
   }
 
   render() {
@@ -44,10 +45,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(
+export default withRouter (connect(
   mapStateToProps,
   { getlists })
-  (Classes)
+  (Classes))
 
 
 

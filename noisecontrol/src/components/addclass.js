@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
-import {AuthWithaxios} from '../authwithaxios';
+import {axiosAutho} from '../axiosAutho';
 import {addclass} from '../actions';
 import {connect} from 'react-redux';
+import { withRouter } from "react-router";
 
 class AddClass extends Component {
     constructor(props) {
@@ -38,18 +39,23 @@ class AddClass extends Component {
     //         })
     // }
 
-    addClassroom = e =>{
-        e.preventDefault();
+    addClassroom = event =>{
+        event.preventDefault();
         const NewClass = {
             classroom_name: this.state.classroomName,
-            teacher_id: localStorage.getItem("teacher")
+            highest_score: 0,
+            // user_id: localStorage.getItem('id'),
+            score: 0,
+            date:Date.now()
         }
         this.props.addclass(NewClass)
+        this.props.history.push('/classes')
+       
     }
 
 
-    changeHandler = e => {
-        this.setState({ [e.target.name]: e.target.value })
+    changeHandler = event => {
+        this.setState({ [event.target.name]: event.target.value })
     };
 
     render() {
@@ -57,7 +63,7 @@ class AddClass extends Component {
 
             <div className='addClass'>
                 <div className='classContainer'>
-                    <h2>Add A Class</h2>
+                    <h2 className="addClassText">Add A Class</h2>
                     <div className='formContainer'>
                     <form onSubmit={this.addClassroom}>
                         <input
@@ -96,8 +102,8 @@ class AddClass extends Component {
                         />
                         <br/>
 
+                    <button className='addclassbutton' type='submit'>Add A Class</button>
                     </form>
-                    <button className='addButton' type='submit'> Add A Class</button>
 
                 </div>
             </div>
@@ -111,7 +117,7 @@ const mapStateToProps = state => {
      classes: state.classes   
     }
 }
-export default connect(
+export default withRouter(connect(
    mapStateToProps,
    {addclass} 
-)(AddClass)
+)(AddClass))
